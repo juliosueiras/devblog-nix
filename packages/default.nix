@@ -8,7 +8,7 @@ let
     fetchSubmodules = true;
   };
 in {
-  devBlogBucket = pkgs.callPackage ./dev-blog-bucket/default.nix {
+  bucket = pkgs.callPackage ./bucket {
     inherit mainRepo;
   };
 }
