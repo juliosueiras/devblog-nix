@@ -8,7 +8,11 @@ let
     fetchSubmodules = true;
   };
 in {
-  bucket = pkgs.callPackage ./bucket {
-    inherit mainRepo;
-  };
+  bucket = pkgs.callPackage ./bucket { inherit mainRepo; };
+
+  landingPage = pkgs.callPackage ./landingPage { inherit mainRepo; };
+
+  postAPI = pkgs.callPackage ./postAPI { inherit mainRepo; };
+
+  navbar = pkgs.callPackage ./navbar { inherit mainRepo; };
 }

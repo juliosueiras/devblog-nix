@@ -6,7 +6,7 @@ let
     channel = "nightly";
   };
 in mozillaRust.buildRustPackage {
-  name = "dev-blog-bucket";
+  name = "bucket";
 
   cargoPatches = [
     ./cargo.patch
@@ -16,8 +16,8 @@ in mozillaRust.buildRustPackage {
 
   buildInputs = [ pkg-config openssl.dev ];
 
-  checkPhase = "";
+  checkPhase = "true";
 
-  cargoSha256 = "15x5z6n6g42fp79q9lfgy77apkhndwfvbm6fh39yzbkvd94kx7s5";
+  cargoSha256 = null;
   verifyCargoDeps = true;
 }
