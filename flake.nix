@@ -25,6 +25,10 @@
         sha256 = "1x5sv3x4gda9fy6wrki84h21fgx02ydvm7ps95vsxk205lsmm055";
         fetchSubmodules = true;
       };
+
+      serveLandingScript = pkgs.writeScript "serveLanding" ''
+        ${pkgs.python3}/bin/python -m http.server --directory ${self.packages.x86_64-linux.landingPage}
+      '';
     in {
       packages.x86_64-linux.bucket =
         pkgs.callPackage ./packages/bucket { inherit mainRepo; };
@@ -37,5 +41,10 @@
 
       packages.x86_64-linux.navbar =
         pkgs.callPackage ./packages/navbar { inherit mainRepo; };
+
+        apps.x86_64-linux.serveLanding = {
+          type = "app";
+          program = "${serveLandingScript}";
+        };
     };
 }
