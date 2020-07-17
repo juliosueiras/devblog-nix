@@ -9,7 +9,8 @@
   outputs = { self, nixpkgs }:
     let
       moz_overlay = import (builtins.fetchTarball {
-        url = "https://github.com/mozilla/nixpkgs-mozilla/archive/efda5b357451dbb0431f983cca679ae3cd9b9829.tar.gz";
+        url =
+          "https://github.com/mozilla/nixpkgs-mozilla/archive/efda5b357451dbb0431f983cca679ae3cd9b9829.tar.gz";
         sha256 = "11wqrg86g3qva67vnk81ynvqyfj0zxk83cbrf0p9hsvxiwxs8469";
       });
 
@@ -42,9 +43,13 @@
       packages.x86_64-linux.navbar =
         pkgs.callPackage ./packages/navbar { inherit mainRepo; };
 
-        apps.x86_64-linux.serveLanding = {
-          type = "app";
-          program = "${serveLandingScript}";
-        };
+      apps.x86_64-linux.serveLanding = {
+        type = "app";
+        program = "${serveLandingScript}";
+      };
+
+      devShell.x86_64-linux = pkgs.mkShell {
+        buildInputs = [];
+      };
     };
 }
